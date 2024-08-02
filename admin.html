@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <form id="h1-form">
+        <label for="h1Text">Update h1 Text:</label>
+        <input type="text" id="h1Text" name="h1Text">
+        <button type="submit">Update</button>
+    </form>
+    <script>
+        document.getElementById('h1-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const h1Text = document.getElementById('h1Text').value;
+            const response = await fetch('/api/h1-text', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ h1Text }),
+            });
+            const result = await response.json();
+            alert('h1 text updated to: ' + result.h1Text);
+        });
+    </script>
+</body>
+</html>
